@@ -7,7 +7,7 @@ import {
   ThemeProvider,
   Typography,
 } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { modernTheme } from "../theme/modernTheme";
 import { useStyle } from "./App.style";
 import { ThemeSwitcherContext } from "../context/ThemeSwitcherProvider";
@@ -15,6 +15,13 @@ import Card from "../components/Card/Card";
 
 const App = () => {
   const { setThemeModeName, themeMode } = useContext(ThemeSwitcherContext);
+
+  const getThemeModeFromLocalStorage = localStorage.getItem("theme-mode");
+  useEffect(() => {
+    if (getThemeModeFromLocalStorage) {
+      setThemeModeName(getThemeModeFromLocalStorage);
+    }
+  }, []);
 
   const changeThemeHandler = (theme) => {
     setThemeModeName(theme);

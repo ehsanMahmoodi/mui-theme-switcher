@@ -16,6 +16,7 @@ const ThemeSwitcherProvider = ({ children }) => {
   const [themeMode, setThemeMode] = useState(lightTheme);
   useEffect(() => {
     setThemeMode(currentTheme);
+    localStorage.setItem("theme-mode", themeModeName);
   }, [currentTheme]);
 
   return (
